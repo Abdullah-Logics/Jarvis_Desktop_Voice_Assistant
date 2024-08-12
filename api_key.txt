@@ -1,0 +1,7 @@
+1. Go to https://ai.google.dev/gemini-api
+2. Click on Get API Key in Google AI Studio
+3. Sign in a google account
+4. On the interface click Get API Key
+5. Click Create API Key
+6.Select the project and click Create API Key
+7. Copy the key and paste it at the 11th line of the code
