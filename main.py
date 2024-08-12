@@ -7,6 +7,11 @@ import wikipedia
 import re
 import os
 
+# Enter your API Key
+api_key = "API Key"
+
+History = "" #This is the empty history this stores the data when the progress goes on
+
 def get_download_path():
     """Return the default download path for the current user."""
     if os.name == 'nt':  # For Windows
@@ -15,10 +20,6 @@ def get_download_path():
         download_path = os.path.join(os.environ['HOME'], 'Downloads')
     
     return download_path
-# Enter your API Key
-api_key = "API Key"
-
-History = "" #This is the empty history this stores the data when the progress goes on
 
 # Removing Emojis from the Gemini Text
 def remove_emojis(text):
