@@ -5,7 +5,16 @@ import time
 import google.generativeai as genai
 import wikipedia
 import re
+import os
 
+def get_download_path():
+    """Return the default download path for the current user."""
+    if os.name == 'nt':  # For Windows
+        download_path = os.path.join(os.environ['USERPROFILE'], 'Downloads')
+    else:  # For macOS/Linux
+        download_path = os.path.join(os.environ['HOME'], 'Downloads')
+    
+    return download_path
 # Enter your API Key
 api_key = "API Key"
 
@@ -59,7 +68,8 @@ def gemini(prompt):
         if "N0".lower() in yes_no.lower():
             return 0
         else:
-            path = f"C:/Users/abdul/Downloads/{prompt[:30]}"
+            p = get_download_path()
+            path = p + f"/{prompt[:30]}"
             with open(path, "w") as f:
                 f.write(f"Prompt:- {prompt}\nGemini:-\n{reply}")
                 return 0
@@ -108,7 +118,8 @@ def chat(title):
             print(reply)
             reply = remove_emojis(reply)
             say(reply)
-            with open(f"C:/Users/abdul/Downloads/{title}.txt","a") as fp:
+            p = get_download_path()
+            with open(p + f"/{title}.txt","a") as fp:
                 fp.write(""
                          "\n"+reply+"\n")
                 fp.close()
@@ -294,7 +305,8 @@ while True:
                 print("Chat mode is on....")
                 say("Chat Mode is on. Before starting just give it a title.")
                 title = take_command()
-                with open(f"C:/Users/abdul/Downloads/{title}.txt","w") as fp:
+                p = get_download_path()
+                with open(p + f"/{title}.txt","w") as fp:
                     fp.write("Title: " + title + "\n")
                 chat(title)
 
